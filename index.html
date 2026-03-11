@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio — Senior Content Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #F7F3EE;
+      --warm-white: #FDFAF6;
+      --stone: #E8E0D5;
+      --mid: #B5A99A;
+      --text: #2C2420;
+      --text-soft: #6B5E56;
+      --accent: #C45C2E;
+      --accent-light: #F0D5C8;
+      --accent-hover: #A34A22;
+      --serif: 'Lora', Georgia, serif;
+      --sans: 'DM Sans', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--warm-white);
+      color: var(--text);
+      font-family: var(--sans);
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 3rem;
+      background: rgba(253, 250, 246, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--stone);
+    }
+
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-soft);
+      font-size: 0.85rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 5rem;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 6rem 4rem 6rem 5rem;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.2s ease forwards;
+    }
+
+    .hero-title {
+      font-family: var(--serif);
+      font-size: clamp(2.8rem, 5vw, 4.2rem);
+      font-weight: 500;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.75rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.4s ease forwards;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--text-soft);
+      max-width: 460px;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.6s ease forwards;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.8s ease forwards;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+      padding: 0.85rem 2rem;
+      border-radius: 2px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); }
+
+    .btn-secondary {
+      border: 1px solid var(--mid);
+      color: var(--text);
+      padding: 0.85rem 2rem;
+      border-radius: 2px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+    .hero-right {
+      background: var(--cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-right::before {
+      content: '';
+      position: absolute;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--accent-light) 0%, transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0.6;
+    }
+
+    .hero-card {
+      background: white;
+      border: 1px solid var(--stone);
+      padding: 2.5rem;
+      max-width: 340px;
+      width: 100%;
+      position: relative;
+      box-shadow: 0 12px 48px rgba(44,36,32,0.08);
+      opacity: 0;
+      animation: fadeIn 1s 1s ease forwards;
+    }
+
+    .hero-card-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-card h3 {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+      line-height: 1.4;
+    }
+
+    .hero-card p {
+      font-size: 0.88rem;
+      color: var(--text-soft);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .tag-row { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .tag {
+      font-size: 0.7rem;
+      font-weight: 500;
+      padding: 0.3rem 0.75rem;
+      background: var(--accent-light);
+      color: var(--accent);
+      border-radius: 100px;
+      letter-spacing: 0.04em;
+    }
+
+    .hero-card-accent {
+      position: absolute;
+      top: -3px; left: 2rem;
+      width: 60px; height: 3px;
+      background: var(--accent);
+    }
+
+    /* ABOUT STRIP */
+    .about-strip {
+      background: var(--cream);
+      padding: 5rem;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 5rem;
+      align-items: center;
+      border-top: 1px solid var(--stone);
+      border-bottom: 1px solid var(--stone);
+    }
+
+    .about-label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .about-strip h2 {
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 500;
+      line-height: 1.35;
+      color: var(--text);
+    }
+
+    .about-right p {
+      font-size: 1rem;
+      color: var(--text-soft);
+      line-height: 1.85;
+      margin-bottom: 1.25rem;
+    }
+
+    .about-stats {
+      display: flex;
+      gap: 3rem;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--stone);
+    }
+
+    .stat-num {
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 500;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--text-soft);
+      letter-spacing: 0.04em;
+    }
+
+    /* SECTION HEADER */
+    .section { padding: 6rem 5rem; }
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+    .section-header h2 {
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 500;
+    }
+    .section-number {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+
+    /* CASE STUDIES */
+    .case-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5px;
+      background: var(--stone);
+      border: 1.5px solid var(--stone);
+    }
+
+    .case-card {
+      background: var(--warm-white);
+      padding: 2.75rem;
+      transition: background 0.2s;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .case-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 2px;
+      background: var(--accent);
+      transition: width 0.35s ease;
+    }
+
+    .case-card:hover { background: var(--cream); }
+    .case-card:hover::after { width: 100%; }
+
+    .case-type {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .case-card h3 {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-weight: 500;
+      line-height: 1.35;
+      margin-bottom: 0.85rem;
+    }
+
+    .case-card p {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+    }
+
+    .case-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .case-asset {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--text-soft);
+      background: var(--stone);
+      padding: 0.3rem 0.7rem;
+      border-radius: 2px;
+      letter-spacing: 0.03em;
+    }
+
+    .case-asset::before { content: '→'; color: var(--accent); font-size: 0.7rem; }
+
+    .case-outcome {
+      margin-top: 1.25rem;
+      padding: 1rem 1.25rem;
+      background: var(--accent-light);
+      border-left: 2px solid var(--accent);
+      font-size: 0.82rem;
+      color: var(--accent-hover);
+      line-height: 1.6;
+    }
+
+    .case-outcome strong { font-weight: 500; }
+
+    /* WHAT I BRING */
+    .approach-section {
+      background: var(--cream);
+      padding: 6rem 5rem;
+      border-top: 1px solid var(--stone);
+    }
+
+    .approach-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3.5rem;
+    }
+
+    .approach-card {
+      padding: 2rem;
+      background: white;
+      border: 1px solid var(--stone);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .approach-card:hover {
+      box-shadow: 0 8px 32px rgba(44,36,32,0.07);
+      transform: translateY(-2px);
+    }
+
+    .approach-icon {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .approach-card h3 {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-weight: 500;
+      margin-bottom: 0.6rem;
+    }
+
+    .approach-card p {
+      font-size: 0.85rem;
+      color: var(--text-soft);
+      line-height: 1.75;
+    }
+
+    /* ASSET GUIDE SECTION */
+    .asset-section { padding: 6rem 5rem; }
+
+    .asset-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+    }
+
+    .asset-card {
+      border: 1px solid var(--stone);
+      padding: 1.75rem;
+      position: relative;
+    }
+
+    .asset-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+
+    .asset-card h4 {
+      font-family: var(--serif);
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .signal-badge {
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.6rem;
+      border-radius: 100px;
+    }
+
+    .signal-high { background: #D4EDDA; color: #2D6A3F; }
+    .signal-med  { background: #FFF3CD; color: #856404; }
+
+    .asset-card p {
+      font-size: 0.82rem;
+      color: var(--text-soft);
+      line-height: 1.7;
+    }
+
+    /* CONTACT */
+    .contact {
+      background: var(--text);
+      color: white;
+      padding: 6rem 5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .contact h2 {
+      font-family: var(--serif);
+      font-size: 2.5rem;
+      font-weight: 500;
+      line-height: 1.3;
+      margin-bottom: 1.25rem;
+    }
+
+    .contact h2 em { font-style: italic; color: var(--accent-light); }
+
+    .contact p {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+
+    .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.25rem 1.5rem;
+      border: 1px solid rgba(255,255,255,0.12);
+      color: white;
+      text-decoration: none;
+      font-size: 0.88rem;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .contact-link:hover {
+      border-color: var(--accent);
+      background: rgba(196,92,46,0.1);
+    }
+
+    .contact-link-icon { font-size: 1.1rem; }
+    .contact-link-label { font-weight: 300; opacity: 0.7; font-size: 0.75rem; display: block; margin-top: 0.1rem; }
+
+    /* FOOTER */
+    footer {
+      background: #1E1612;
+      color: rgba(255,255,255,0.35);
+      text-align: center;
+      padding: 1.75rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.04em;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* DIVIDER */
+    .divider {
+      width: 48px; height: 2px;
+      background: var(--accent);
+      margin: 1.25rem 0 2rem;
+    }
+
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+      .hero-left { padding: 7rem 2rem 4rem; }
+      .about-strip { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 2rem; }
+      .section { padding: 4rem 2rem; }
+      .case-grid { grid-template-columns: 1fr; }
+      .approach-grid, .asset-grid { grid-template-columns: 1fr; }
+      .contact { grid-template-columns: 1fr; padding: 4rem 2rem; }
+      .approach-section { padding: 4rem 2rem; }
+      .asset-section { padding: 4rem 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Your Name &nbsp;/&nbsp; Content Design</a>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#approach">Approach</a></li>
+    <li><a href="#assets">Assets</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Senior Content Designer</p>
+    <h1 class="hero-title">
+      Words are the<br>
+      <em>least</em> of it.
+    </h1>
+    <p class="hero-desc">
+      I shape how people understand products — through strategy, structure, and systems thinking. Content that earns trust, reduces friction, and scales.
+    </p>
+    <div class="hero-ctas">
+      <a href="#work" class="btn-primary">See the work</a>
+      <a href="#contact" class="btn-secondary">Get in touch</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-card">
+      <div class="hero-card-accent"></div>
+      <p class="hero-card-label">Featured Project</p>
+      <h3>Onboarding Content System — FinTech Platform</h3>
+      <p>Designed an end-to-end content framework that reduced drop-off by 34% and became the foundation for all new product areas.</p>
+      <div class="tag-row">
+        <span class="tag">Content Strategy</span>
+        <span class="tag">IA</span>
+        <span class="tag">Systems</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-strip">
+  <div class="about-left reveal">
+    <p class="about-label">About</p>
+    <h2>Strategy first. Always.</h2>
+  </div>
+  <div class="about-right reveal">
+    <p>
+      I'm a Senior Content Designer with [X] years of experience working across product, design, and research teams. My strength is in upstream thinking — helping orgs define what content needs to do before a word is written.
+    </p>
+    <p>
+      I've built content models, voice frameworks, and IA structures that outlast any single product cycle. I believe the most important design decision is often what you don't say.
+    </p>
+    <div class="about-stats">
+      <div>
+        <div class="stat-num">[X]+</div>
+        <div class="stat-label">Years experience</div>
+      </div>
+      <div>
+        <div class="stat-num">[X]</div>
+        <div class="stat-label">Products shipped</div>
+      </div>
+      <div>
+        <div class="stat-num">[X]%</div>
+        <div class="stat-label">Key metric lift</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section class="section" id="work">
+  <div class="section-header reveal">
+    <span class="section-number">01 / Work</span>
+    <h2>Case Studies</h2>
+  </div>
+
+  <div class="case-grid">
+
+    <!-- Case 1 -->
+    <div class="case-card reveal">
+      <p class="case-type">Content Strategy &amp; IA</p>
+      <h3>Rebuilding the Help Ecosystem for a 4M-user SaaS Platform</h3>
+      <p>
+        The support team was drowning. Users couldn't find answers. I led a full content audit, restructured the IA, and defined a sustainable publishing model.
+      </p>
+      <div class="case-meta">
+        <span class="case-asset">Content audit + gap analysis</span>
+        <span class="case-asset">IA map</span>
+        <span class="case-asset">Editorial framework</span>
+      </div>
+      <div class="case-outcome">
+        <strong>Outcome:</strong> 41% reduction in support tickets over 6 months. Deflection rate improved from 28% → 59%.
+      </div>
+    </div>
+
+    <!-- Case 2 -->
+    <div class="case-card reveal">
+      <p class="case-type">UX Writing &amp; Microcopy</p>
+      <h3>Error State Redesign — From Frustration to Forward Motion</h3>
+      <p>
+        Research showed users abandoned at key error states. I developed a content framework for error messaging that balanced clarity, empathy, and next-step guidance.
+      </p>
+      <div class="case-meta">
+        <span class="case-asset">Error content matrix</span>
+        <span class="case-asset">Annotated wireframes</span>
+        <span class="case-asset">A/B test results</span>
+      </div>
+      <div class="case-outcome">
+        <strong>Outcome:</strong> Recovery rate increased by 22%. Qualitative research showed significantly less user blame.
+      </div>
+    </div>
+
+    <!-- Case 3 -->
+    <div class="case-card reveal">
+      <p class="case-type">Design Systems &amp; Voice/Tone</p>
+      <h3>Building a Voice Framework Across 6 Product Teams</h3>
+      <p>
+        Inconsistent language was eroding brand trust. I defined a scalable voice and tone system, including toolkits for writers and a governance model for adoption.
+      </p>
+      <div class="case-meta">
+        <span class="case-asset">Voice principles doc</span>
+        <span class="case-asset">Tone spectrum guide</span>
+        <span class="case-asset">Pattern library</span>
+      </div>
+      <div class="case-outcome">
+        <strong>Outcome:</strong> Adopted across all product verticals within 2 quarters. Reduced review cycles by 35%.
+      </div>
+    </div>
+
+    <!-- Case 4 -->
+    <div class="case-card reveal">
+      <p class="case-type">Content Strategy &amp; IA</p>
+      <h3>Onboarding Content System — Zero to Activated</h3>
+      <p>
+        New users weren't reaching their "aha moment." I mapped the full journey, identified content gaps, and designed a progressive disclosure model for first-run experience.
+      </p>
+      <div class="case-meta">
+        <span class="case-asset">Journey map</span>
+        <span class="case-asset">Content model</span>
+        <span class="case-asset">Measurement framework</span>
+      </div>
+      <div class="case-outcome">
+        <strong>Outcome:</strong> 34% reduction in onboarding drop-off. Framework adopted as the template for all new product launches.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- APPROACH -->
+<section class="approach-section" id="approach">
+  <div class="section-header reveal">
+    <span class="section-number">02 / Approach</span>
+    <h2>How I Work</h2>
+  </div>
+
+  <div class="approach-grid">
+    <div class="approach-card reveal">
+      <div class="approach-icon">◎</div>
+      <h3>Diagnose before designing</h3>
+      <p>I start with a content audit or problem framing — not a blank doc. Understanding what exists, what's broken, and what the user actually needs comes before any writing.</p>
+    </div>
+    <div class="approach-card reveal">
+      <div class="approach-icon">⬡</div>
+      <h3>Systems over one-offs</h3>
+      <p>I design content frameworks, models, and patterns that scale. Any solution I build should work for the tenth use case, not just the first.</p>
+    </div>
+    <div class="approach-card reveal">
+      <div class="approach-icon">◈</div>
+      <h3>Decisions, documented</h3>
+      <p>I write content briefs, decision logs, and rationale docs. Stakeholders deserve to understand why, not just what — and the team deserves a record to build on.</p>
+    </div>
+    <div class="approach-card reveal">
+      <div class="approach-icon">◐</div>
+      <h3>Research-grounded</h3>
+      <p>I partner with research teams and run lightweight studies myself. Content decisions backed by user data land faster and hold up to scrutiny.</p>
+    </div>
+    <div class="approach-card reveal">
+      <div class="approach-icon">△</div>
+      <h3>Cross-functional fluency</h3>
+      <p>I work upstream with product and design, and downstream with marketing and legal. I translate between these worlds without losing signal.</p>
+    </div>
+    <div class="approach-card reveal">
+      <div class="approach-icon">◇</div>
+      <h3>Measurable impact</h3>
+      <p>I define success metrics before launch and track them after. Content strategy without measurement is just opinion.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ASSET GUIDE -->
+<section class="asset-section" id="assets">
+  <div class="section-header reveal">
+    <span class="section-number">03 / Assets</span>
+    <h2>Strategy Artifacts</h2>
+  </div>
+  <p class="reveal" style="color: var(--text-soft); max-width: 600px; margin-bottom: 3rem; font-size: 0.95rem; line-height: 1.8;">
+    These are the deliverables that signal senior-level content thinking — artifacts that show your process, not just your prose.
+  </p>
+
+  <div class="asset-grid">
+    <div class="asset-card reveal">
+      <div class="asset-card-top">
+        <h4>Content Audit</h4>
+        <span class="signal-badge signal-high">High signal</span>
+      </div>
+      <p>A systematic inventory with scoring criteria, gap analysis, and recommendations. Shows you can assess at scale before prescribing solutions.</p>
+    </div>
+    <div class="asset-card reveal">
+      <div class="asset-card-top">
+        <h4>Content Model / Taxonomy</h4>
+        <span class="signal-badge signal-high">High signal</span>
+      </div>
+      <p>Structured diagram of content types, relationships, and metadata. Demonstrates IA thinking and understanding of how content is created, stored, and retrieved.</p>
+    </div>
+    <div class="asset-card reveal">
+      <div class="asset-card-top">
+        <h4>Annotated Journey Map</h4>
+        <span class="signal-badge signal-high">High signal</span>
+      </div>
+      <p>User journey with content decisions and rationale layered in. Shows how content decisions serve user needs across an end-to-end experience.</p>
+    </div>
+    <div class="asset-card reveal">
+      <div class="asset-card-top">
+        <h4>Voice & Tone Framework</h4>
+        <span class="signal-badge signal-high">High signal</span>
+      </div>
+      <p>Principles + spectrum + contextual examples. Hiring teams want to see how you codify brand language and make it usable across teams.</p>
+    </div>
+    <div class="asset-card reveal">
+      <div class="asset-card-top">
+        <h4>Content Brief</h4>
+        <span class="signal-badge signal-med">Strong signal</span>
+      </div>
+      <p>Your pre-writing strategic document: goals, audience, scope, success metrics. Proves you think before you type.</p>
+    </div>
+    <div class="asset-card reveal">
+      <div class="asset-card-top">
+        <h4>Measurement Framework</h4>
+        <span class="signal-badge signal-med">Strong signal</span>
+      </div>
+      <p>How you defined success and tracked outcomes. Even qualitative results matter — quote research findings, not just analytics.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="reveal">
+    <h2>Let's make something <em>worth saying.</em></h2>
+    <p>Open to senior content design and content strategy roles. I'm especially interested in complex product domains, design systems work, and organizations where content has a seat at the table.</p>
+  </div>
+  <div class="contact-links reveal">
+    <a href="mailto:you@email.com" class="contact-link">
+      <span class="contact-link-icon">✉</span>
+      <span>
+        you@email.com
+        <span class="contact-link-label">Email me directly</span>
+      </span>
+    </a>
+    <a href="https://linkedin.com/in/yourhandle" class="contact-link" target="_blank">
+      <span class="contact-link-icon">in</span>
+      <span>
+        linkedin.com/in/yourhandle
+        <span class="contact-link-label">LinkedIn profile</span>
+      </span>
+    </a>
+    <a href="#" class="contact-link">
+      <span class="contact-link-icon">↓</span>
+      <span>
+        Download resume
+        <span class="contact-link-label">PDF, updated [Month Year]</span>
+      </span>
+    </a>
+  </div>
+</section>
+
+<footer>
+  © 2025 Your Name · Senior Content Designer · Made with intention.
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

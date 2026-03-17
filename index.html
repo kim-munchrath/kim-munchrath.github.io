@@ -627,7 +627,7 @@
       <strong>TL;DR</strong>
       The signing method selection screen in Canada Life's SimpleProtect application was causing real problems — advisors were routinely choosing the wrong option because the guidance was buried in a tooltip nobody read. When a rebranding update was scoped for the page, I used it as an opening to fix the actual problem, not just update the colours.
     </div>
-    <div class="cs-body">
+        <div class="cs-body">
       <div class="cs-section">
         <h2>The challenge</h2>
         <p>When advisors start a SimpleProtect application, they need to choose whose device the contract will be signed on. From both an experience and legal perspective, signing on the client's device is the preferred option — but the original screen didn't make that clear at all.</p>
@@ -638,16 +638,21 @@
 
       <div class="cs-section">
         <h2>The process</h2>
-        <p>I started by mapping out every scenario a user might face depending on which signing option they chose. I collected all the variables into a table first, then moved it into a flowchart to make it easier to share with the team and align on the actual complexity of the problem.</p>
-        <img src="images/insurance-uloan.png" class="cs-img" alt="Before and after contact info design" />
-        <p class="cs-img-caption">Mapping variables before touching a single word of copy.</p>
-        <p>While working through the flows, I noticed that two of the questions about client familiarity had been treated as separate paths. I worked with an underwriter to dig into the backend procedures and found there was no meaningful difference between them — they were separate for historical reasons, not functional ones. I made the case to merge them.</p>
+        <p>I started by mapping every scenario a user might face depending on which signing option they chose. Before touching a word of copy, I collected all the variables into a table to get a clear picture of the actual complexity.</p>
+        <img src="images/insurance-scenario-table.png" class="cs-img" alt="Insurance portal scenario mapping table" />
+        <p class="cs-img-caption">Mapping all the signing scenarios and their consequences before touching the UI.</p>
+        <p>Once I had that, I moved it into a flowchart to make it easier to share with the team and align on the problem. This is the kind of artifact that helps get stakeholders on the same page — it's a lot harder to argue against a decision when the complexity is laid out plainly in front of everyone.</p>
+        <img src="images/insurance-flow-updated.png" class="cs-img" alt="Updated insurance portal flow diagram" />
+        <p class="cs-img-caption">The simplified flowchart I used to align the team — a cleaner model for a genuinely complex decision.</p>
+        <p>While working through the flows, I noticed that two of the questions about client familiarity had been treated as separate paths. I worked with an underwriter to dig into the backend procedures and found there was no meaningful difference between them. I made the case to merge them.</p>
         <div class="cs-pullquote">I worked with an underwriter to confirm there was no reason to keep the two questions separate — so I made the case to merge them and reduce unnecessary friction for users.</div>
-        <p>The final version replaced the static, ambiguous screen with a dynamic experience. As advisors answer questions, the UI updates in real time to show exactly what steps are coming — making it immediately obvious that signing on the client's device is the simpler path.</p>
       </div>
 
       <div class="cs-section">
         <h2>The result</h2>
+        <p>The final version replaced the static, ambiguous screen with a dynamic experience. As advisors answer questions, the UI updates in real time to show exactly what steps are coming — making it immediately obvious that signing on the client's device is the simpler path before they commit.</p>
+        <img src="images/insurance-app-new.png" class="cs-img" alt="Final SimpleProtect application method screen" />
+        <p class="cs-img-caption">The final screen — consequences of each choice visible upfront, not hidden in a tooltip.</p>
         <div class="cs-outcome-box">
           <h3>Key improvements</h3>
           <ul class="cs-outcome-list">

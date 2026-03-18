@@ -150,6 +150,17 @@
     .about-personality strong { font-style: normal; color: var(--text); font-weight: 500; }
     @media (max-width: 900px) { .about-photo-row { grid-template-columns: 1fr; } .about-photo { width: 160px; height: 160px; } }
 
+
+    /* STORY CALLOUT */
+    .cs-story-callout { background: var(--cream); border: 1px solid var(--stone); padding: 2rem; margin: 2rem 0; }
+    .cs-story-callout-label { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+    .cs-story-callout-intro { font-size: 0.9rem; color: var(--text-soft); margin-bottom: 1.25rem; font-style: italic; }
+    .cs-story-dialogue { border-left: 2px solid var(--stone); padding-left: 1.25rem; margin-bottom: 1.25rem; }
+    .cs-story-line { display: flex; gap: 0.75rem; margin-bottom: 0.5rem; font-size: 0.9rem; line-height: 1.6; }
+    .cs-story-speaker { font-weight: 500; color: var(--text); min-width: 70px; flex-shrink: 0; }
+    .cs-story-text { color: var(--text-soft); }
+    .cs-story-callout-note { font-size: 0.82rem; color: var(--text-soft); line-height: 1.7; font-style: italic; border-top: 1px solid var(--stone); padding-top: 1rem; margin-top: 0.5rem; }
+
     /* BEFORE/AFTER PAIRS */
     .cs-comparison { margin: 2.5rem 0; }
     .cs-comparison-label { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
@@ -392,7 +403,7 @@
       <p class="cs-eyebrow">TD Bank · Conversational UI · Content Strategy</p>
       <h1>Chatbot iteration — from navigation instructions to frictionless flow</h1>
       <div class="cs-meta-row">
-        <div class="cs-meta-item"><label>Company</label><span>TD Bank</span></div>
+        <div class="cs-meta-item"><label>Company</label><span>RBC</span></div>
         <div class="cs-meta-item"><label>Role</label><span>Senior content designer</span></div>
         <div class="cs-meta-item"><label>Context</label><span>Clari chatbot platform migration</span></div>
         <div class="cs-meta-item"><label>Focus</label><span>Conversational UI, content strategy, advocacy</span></div>
@@ -674,10 +685,10 @@
   <div class="cs-page">
     <button class="cs-back" onclick="showPage('home'); scrollToSection('work')">Back to work</button>
     <div class="cs-hero">
-      <p class="cs-eyebrow">TD Bank / Canada Life · Content Strategy · Cross-functional</p>
+      <p class="cs-eyebrow">RBC · Content Strategy · Cross-functional</p>
       <h1>Standardizing & storytelling — one screen to rule them all</h1>
       <div class="cs-meta-row">
-        <div class="cs-meta-item"><label>Company</label><span>TD Bank</span></div>
+        <div class="cs-meta-item"><label>Company</label><span>RBC</span></div>
         <div class="cs-meta-item"><label>Focus</label><span>Content strategy, cross-functional alignment, content modelling</span></div>
         <div class="cs-meta-item"><label>Scope</label><span>Self-initiated</span></div>
       </div>
@@ -686,39 +697,51 @@
       <strong>TL;DR</strong>
       Multiple siloed design teams each owned a different version of essentially the same screen — the upcoming transactions view. It was a disconnected experience that universally annoyed users and colleagues alike, but nobody had taken it on. I reached out, made the case, got alignment, and turned a fragmented set of screens into a single dynamic page that became the design system standard.
     </div>
-    <div class="cs-body">
+        <div class="cs-body">
       <div class="cs-section">
         <h2>The challenge</h2>
-        <p>The company had multiple versions of the same upcoming transactions screen, depending on what type of transaction was involved. Historically, different siloed design teams owned different flows — which meant a disconnected experience for users and no single source of truth for designers.</p>
-        <p>This wasn't a funded project. Nobody had been asked to fix it. But the experience misalignment was something that universally annoyed users and stakeholders, and I noted that nobody had volunteered to address it.</p>
+        <p>RBC had multiple versions of essentially the same screen — the upcoming transactions view — depending on what type of transaction was involved. Different siloed design teams owned different flows, which meant a disconnected experience for users and no single source of truth for designers.</p>
+        <p>This wasn't a funded project. Nobody had been asked to fix it. But the experience misalignment was something that universally annoyed users and colleagues, and I noted that nobody had volunteered to address it.</p>
         <div class="cs-pullquote">This enhancement holds a place in my heart because the pain point was identified by me personally — it wasn't part of a funded project — and yet I was still able to get stakeholders on board and get it fixed.</div>
       </div>
 
       <div class="cs-section">
         <h2>The process</h2>
         <p>I reached out to various product owners and designers, suggesting we align. Turns out the experience misalignment was something that universally annoyed people — they were just happy to have someone volunteering to take it on.</p>
-        <p>I framed the new component as reflecting the experience of paying for something in person: pulling out a wallet, pulling out cash, handing it over. That framing — from, amount, to — helped stakeholders understand the updated field order with real-life examples rather than abstract data logic.</p>
-        <img src="images/standardizing.png" class="cs-img" alt="Standardizing and storytelling case study" />
-        <p class="cs-img-caption">The template for upcoming transactions — a single dynamic page covering all transfer types.</p>
-        <p>Once we determined the field ordering and the new component, I worked with developers and QA team members on how to express the new standard clearly to the scrum team, and created the template in Confluence as a single source of truth.</p>
-        <div class="cs-pullquote">This update was a win for conversational design and storytelling. Stakeholders understood what I was going for when I described the updated field order with real-life examples — describing pulling out your wallet to pay someone, and how that conversation could go.</div>
+        <p>I framed the new component as reflecting the experience of paying for someone in person. Instead of abstract data fields, I described it as: pulling out a wallet <strong>[from]</strong>, pulling out cash <strong>[amount]</strong>, handing it over <strong>[to]</strong>. That framing helped stakeholders understand the updated field order immediately.</p>
+
+        <div class="cs-story-callout">
+          <div class="cs-story-callout-label">The storytelling moment that got stakeholder alignment</div>
+          <p class="cs-story-callout-intro">I described pulling out your wallet to pay someone, and how that conversation could go:</p>
+          <div class="cs-story-dialogue">
+            <div class="cs-story-line"><span class="cs-story-speaker">Payor</span><span class="cs-story-text">Hey Raymond, I have 20 bucks for you.</span></div>
+            <div class="cs-story-line"><span class="cs-story-speaker">Recipient</span><span class="cs-story-text">Sweet thanks, when do I get it?</span></div>
+            <div class="cs-story-line"><span class="cs-story-speaker">Payor</span><span class="cs-story-text">You get it today, and every month after that!</span></div>
+            <div class="cs-story-line"><span class="cs-story-speaker">Recipient</span><span class="cs-story-text">Woohoo! Forever?</span></div>
+            <div class="cs-story-line"><span class="cs-story-speaker">Payor</span><span class="cs-story-text">Nope, just until September 2024, so 12 in total.</span></div>
+            <div class="cs-story-line"><span class="cs-story-speaker">Recipient</span><span class="cs-story-text">Sounds good to me.</span></div>
+          </div>
+          <p class="cs-story-callout-note">Stakeholders understood the updated field order and overview component immediately — from, amount, to — because it mapped to something they already knew.</p>
+        </div>
+
+        <p>Once we aligned on the field ordering and the new component, I worked with the template through to developers and QA, and created the single source of truth in Confluence for the design system.</p>
+        <img src="images/standardizing-template.png" class="cs-img" alt="Upcoming transaction content template with annotations" />
+        <p class="cs-img-caption">The content template — one dynamic model covering all transaction types, with annotations showing how each field adapts.</p>
       </div>
 
       <div class="cs-section">
         <h2>The result</h2>
+        <img src="images/standardizing-final.png" class="cs-img cs-img-single" alt="Final upcoming e-Transfer screen" />
+        <p class="cs-img-caption">The final screen — a single consistent experience for all transaction types, with mock data.</p>
         <div class="cs-outcome-box">
           <h3>Key improvements</h3>
           <ul class="cs-outcome-list">
             <li>All upcoming transaction types consolidated into a single dynamic page, reducing technical complexity</li>
-            <li>Clearer experience for end users — no more inconsistent screens depending on transaction type</li>
+            <li>Consistent experience for users — no more different screens depending on transaction type</li>
             <li>Single source of truth created in Confluence for the design system</li>
-            <li>Improved experience for fellow designers, who no longer had to maintain multiple versions of the same screen</li>
             <li>Delivered user and business value from a self-initiated project outside funded scope</li>
+            <li>Storytelling approach to stakeholder alignment became a model for future design reviews</li>
           </ul>
-        </div>
-        <div class="cs-kudos">
-          <p>"This enhancement holds a place in my heart because the pain point was identified by me personally — wasn't part of a funded project — and yet I was still able to get stakeholders on board and get it fixed. I went above and beyond my standard line of work to spearhead a change that delivered both user and business value."</p>
-          <cite>— Kim's own reflection on the project</cite>
         </div>
       </div>
     </div>
